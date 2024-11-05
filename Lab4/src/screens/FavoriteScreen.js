@@ -28,9 +28,9 @@ const FavoriteScreen = ({ navigation }) => {
         navigation.navigate('DetailContactFavorite', { contact: item });
     };
 
-    const goHome = () => {
-        navigation.navigate('Contact')
-    }
+    // const goHome = () => {
+    //     navigation.navigate('Contact')
+    // }
 
     const renderItem = ({ item }) => {
         return (
@@ -55,7 +55,7 @@ const FavoriteScreen = ({ navigation }) => {
                 numColumns={3}
                 columnWrapperStyle={styles.columnWrapper}
             />
-            <Button onPress={goHome} title='go to home'></Button>
+            {/* <Button onPress={goHome} title='go to home'></Button> */}
         </View>
     );
 };

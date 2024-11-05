@@ -1,7 +1,7 @@
-// src/screens/HomeScreen.js
 import React, { useEffect, useState } from 'react';
-import { View, Text, Button, FlatList, Image, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, FlatList, Image, TouchableOpacity, Button } from 'react-native';
 import { useSelector } from 'react-redux';
+import Icon from 'react-native-vector-icons/MaterialIcons'; // Import icon
 
 const HomeScreen = ({ navigation }) => {
     const [data, setData] = useState([]);
@@ -16,12 +16,12 @@ const HomeScreen = ({ navigation }) => {
                 return response.json();
             })
             .then(d => {
-                setData(d.results); // Update to use 'results' from the API response
+                setData(d.results);
             })
             .catch(error => {
                 console.log(error);
             });
-    }, []); // Add an empty dependency array to run this effect only once on mount
+    }, []);
 
     const contacts = useSelector(state => state.contacts);
 
@@ -29,12 +29,8 @@ const HomeScreen = ({ navigation }) => {
         navigation.navigate('DetailContactScreen', { contact: item });
     };
 
-    const goFavorite = () => {
-        navigation.navigate('FavoriteScreen')
-    }
-
     return (
-        <View style={{ padding: 20 }}>
+        <View style={{ padding: 20, flex: 1 }}>
             <FlatList
                 data={data}
                 renderItem={({ item }) => {
@@ -50,9 +46,7 @@ const HomeScreen = ({ navigation }) => {
                 }}
                 keyExtractor={item => item.login.uuid}
             />
-            <View>
-                <Button style={{marginBottom: 20}} onPress={goFavorite} title='go to favorite'></Button>
-            </View>
+            {/* <Button title='button'></Button> */}
         </View>
     );
 };
